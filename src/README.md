@@ -1,9 +1,9 @@
 
 # DRL for Automated Testing — Snake + Web (from scratch)
 
-This repo gives you a **from-scratch DRL testing framework** with a **Snake** game tailored for *testing*,
-not just score maxing. It supports **personas** (collector / explorer / bug_hunter), **fault injection**, rich **metrics**,
-and scripts to **train / evaluate / visualize**. Add a second app (e.g., a buggy web signup) to satisfy the assignment's 2‑app requirement.
+This repo gives you a **DRL testing framework** with a **Snake** game tailored for *testing*,
+not just score maxing. It supports **personas** (collector / explorer), **fault injection**, rich **metrics**,
+and scripts to **train / evaluate**.
 
 ## Setup
 
