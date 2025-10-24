@@ -129,10 +129,11 @@ python src\eval.py --algo ppo --env web_completer --model_path "$($m.FullName)" 
 #### Fuzzer
 ```bash
 $env:FAULT_DELAY_SEC=0
-$env:FAULT_EMAIL_500=0
 $m = Get-ChildItem models\ppo_web_mock_fuzzer_seed7_*.zip | Sort-Object LastWriteTime | Select-Object -Last 1
 python src\eval.py --algo ppo --env web_fuzzer --model_path "$($m.FullName)" --episodes 30 --csv_out logs\web_fuzzer_eval.csv
 ```
+
+![alt text](https://i.imgur.com/xw8BKGb.gif)
 
 ## Reproducibility
 
