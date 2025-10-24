@@ -84,8 +84,8 @@ Use `--env snake_fault_invisible` or `--env snake_fault_delayed` to train/eval w
 
 This repo also includes a simple two-step signup app plus DRL personas that interact with it through Playwright. You can train/eval the agents on a mock environment for speed, then run evaluations against the real Flask app with optional fault injection (delay, HTTP 500).
 
-Setup
-# in a fresh shell
+### Setup
+in a fresh shell
 python -m venv .venv && .venv\Scripts\activate.ps1
 pip install --upgrade pip
 pip install -r requirements.txt
