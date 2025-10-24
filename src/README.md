@@ -107,7 +107,7 @@ Baseline (no faults) — real app
 ```bash
 $env:FAULT_DELAY_SEC=0
 ```
-# Completer
+#### Completer
 ```bash
 $m = Get-ChildItem models\ppo_web_mock_completer_seed7_*.zip | Sort-Object LastWriteTime | Select-Object -Last 1
 python src\eval.py --algo ppo --env web_completer  --model_path "$($m.FullName)" --episodes 50 --csv_out logs\web_completer_eval.csv
@@ -123,7 +123,7 @@ python src\eval.py --algo ppo --env web_completer --model_path "$($m.FullName)" 
 
 
 
-Fuzzer — real app
+#### Fuzzer
 ```bash
 $env:FAULT_DELAY_SEC=0
 $env:FAULT_EMAIL_500=0
@@ -133,7 +133,7 @@ python src\eval.py --algo ppo --env web_fuzzer --model_path "$($m.FullName)" --e
 
 ## Reproducibility
 
-- Seeds on env and algo (`--seed`)
+- Seeds on env and algo (`--seed`) (7 is always used for these experiments)
 - Saved models in `models/`
 - TensorBoard logs in `logs/`
 - Exact CLI commands documented above
