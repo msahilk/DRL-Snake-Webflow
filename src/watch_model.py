@@ -5,9 +5,9 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from envs.snake_env import SnakeTestEnv
 
 # === choose your trained model ===
-MODEL_PATH = "models/ppo_snake_bug_hunter_seed11_20251023_024238.zip"
+MODEL_PATH = "models/ppo_snake_collector_seed7_20251023_000447.zip"
 
-env = SnakeTestEnv(reward_mode="bug_hunter", seed=7)
+env = SnakeTestEnv(reward_mode="collector", seed=7)
 model = PPO.load(MODEL_PATH)
 
 obs, info = env.reset()

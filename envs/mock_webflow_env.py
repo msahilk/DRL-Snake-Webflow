@@ -15,8 +15,7 @@ class MockWebFlowEnv(gym.Env):
 
     Modes:
       - completer: finish efficiently/correctly
-      - bug_hunter: surface server/validation errors
-      - fuzzer (NAIVE): encourages creating validation errors; very light penalties,
+      - fuzzer encourages creating validation errors; very light penalties,
         mild exploration rewards, minimal guidance toward completion.
         Expect: many validation_errors, low success.
     """
@@ -30,7 +29,7 @@ class MockWebFlowEnv(gym.Env):
         curriculum: bool = True
     ):
         super().__init__()
-        assert reward_mode in ("completer","fuzzer","bug_hunter")
+        assert reward_mode in ("completer","fuzzer")
         self.reward_mode = reward_mode
         self.step_limit = step_limit
         self.curriculum = curriculum

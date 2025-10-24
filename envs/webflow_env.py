@@ -16,8 +16,8 @@ class WebFlowEnv(gym.Env):
     Real Playwright-driven env for the 2-step signup flow.
 
     Modes:
-      - completer / bug_hunter: as before
-      - fuzzer (NAIVE): mirrors the mock naive shaping to encourage banners
+      - completer
+      - fuzzer
     """
     metadata = {"render_modes": ["ansi"]}
 
@@ -32,7 +32,7 @@ class WebFlowEnv(gym.Env):
         curriculum: bool = True
     ):
         super().__init__()
-        assert reward_mode in ("completer","fuzzer","bug_hunter")
+        assert reward_mode in ("completer","fuzzer")
         self.base_url = base_url
         self.reward_mode = reward_mode
         self.step_limit = step_limit

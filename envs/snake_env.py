@@ -9,7 +9,7 @@ from gymnasium import spaces
 # SnakeTestEnv — DRL test Snake
 # =============================
 # Grid-based snake with built-in "fault injection" switches to emulate bugs/regressions.
-# Focus: Automated testing personas (collector vs explorer vs bug_hunter) and rich metrics.
+# Focus: Automated testing personas (collector vs explorer) and rich metrics.
 #
 # Board:
 #   0 = empty, 1 = snake body, 2 = food, 3 = wall (outer border)
@@ -26,12 +26,9 @@ from gymnasium import spaces
 # Reward personas:
 # - collector:   +10 apple, -10 death, -0.01 per step (time pressure)
 # - explorer:   +0.2 per *new tile*, -0.005 on revisits, +2 apple, +30 when ~100% covered, no time pressure
-# - bug_hunter: +3 when an engine bug surfaces (see faults), +5 apple, -10 death
 #
 # Fault toggles (for experiments):
-# - fault_self_collision_skip: with small prob p, ignore self-collision for 1 step (invalid state) → counts as bug_event
 # - fault_invisible_wall: a random inner cell blocks passage but renders as empty (in metrics, count wall_hits)
-# - fault_delayed_food: after eating, delay food spawn by K steps (tests starvation/softlocks)
 #
 # Metrics (returned via info):
 #   steps, apples, length, died, cause, wall_hits, self_hits, turns, unique_cells, coverage_ratio,
@@ -57,7 +54,6 @@ class SnakeTestEnv(gym.Env):
         reward_mode: str = "collector",
         seed: Optional[int] = None,
         fault_invisible_wall: bool = False,
-        self_collision_skip_prob: float = 0.02,
     ):
         super().__init__()
         assert reward_mode in ("collector", "explorer")
@@ -65,7 +61,6 @@ class SnakeTestEnv(gym.Env):
         self.step_limit = step_limit
         self.reward_mode = reward_mode
         self.fault_invisible_wall = fault_invisible_wall
-        self.self_collision_skip_prob = self_collision_skip_prob
         self._ate_last_step = False
         self._unique_cells_prev = 0
 
@@ -197,12 +192,8 @@ class SnakeTestEnv(gym.Env):
 
         # self collision (with optional fault skip)
         if (nr, nc) in self.snake[:-1]:
-            if self.fault_self_collision_skip and self.np_random.random() < self.self_collision_skip_prob:
-                # BUG: skip collision once; count bug event
-                self.bug_events += 1
-            else:
-                self.self_hits += 1
-                return True, "self"
+            self.self_hits += 1
+            return True, "self"
 
         # move snake
         ate = (nr, nc) == self.food
@@ -214,12 +205,7 @@ class SnakeTestEnv(gym.Env):
             self.time_since_last_food = 0
             # clear food
             self.grid[self.food] = 0
-            # delayed spawn?
-            if self.fault_delayed_food_steps > 0:
-                self.pending_food_delay = self.fault_delayed_food_steps
-                self.food = (-1, -1)
-            else:
-                self._place_food()
+            self._place_food()
         else:
             self.time_since_last_food += 1
             tail = self.snake.pop()  # move forward
