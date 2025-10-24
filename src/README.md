@@ -103,7 +103,7 @@ python src/train.py --algo ppo --env web_mock_fuzzer  --timesteps 150000 --seed 
 
 ### Evaluate (CSV)
 
-Baseline (no faults) — real app
+Baseline (no faults) - real app
 ```bash
 $env:FAULT_DELAY_SEC=0
 ```
