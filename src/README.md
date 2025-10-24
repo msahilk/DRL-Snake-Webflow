@@ -81,7 +81,7 @@ CSV columns include `steps, apples, length, died, cause, wall_hits, self_hits, t
 Use `--env snake_fault_invisible` or `--env snake_fault_delayed` to train/eval with specific bugs.
 
 
-![alt text]([https://imgur.com/a/hXYNzYM](https://i.imgur.com/56fcZvV.gif))
+![alt text](https://imgur.com/a/hXYNzYM](https://i.imgur.com/56fcZvV.gif)
 
 ## Web Flow (Flask + Playwright)
 
