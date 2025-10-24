@@ -68,12 +68,6 @@ python src/eval.py --algo ppo --env snake_explorer_invisible \
 
 CSV columns include `steps, apples, length, died, cause, wall_hits, self_hits, turns, unique_cells, coverage_ratio, time_since_last_food, reward`.
 
-### Visualize (ASCII)
-
-```bash
-python src/visualize.py --env snake_collector --fps 8
-```
-
 ## Personas
 
 - **collector**: +10 apple, −10 death, −0.01/step (time pressure)
