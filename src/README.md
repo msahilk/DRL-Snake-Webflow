@@ -113,7 +113,7 @@ $m = Get-ChildItem models\ppo_web_mock_completer_seed7_*.zip | Sort-Object LastW
 python src\eval.py --algo ppo --env web_completer  --model_path "$($m.FullName)" --episodes 50 --csv_out logs\web_completer_eval.csv
 ```
 
-Delay Fault (latency) — Completer under delay
+Delay Fault (latency) - Completer under delay
 ```bash
 $env:FAULT_DELAY_SEC=0.3   # use 0.3s to avoid Playwright 500ms timeout
 $env:FAULT_EMAIL_500=0
