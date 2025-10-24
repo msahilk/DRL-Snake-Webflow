@@ -80,6 +80,9 @@ CSV columns include `steps, apples, length, died, cause, wall_hits, self_hits, t
 
 Use `--env snake_fault_invisible` or `--env snake_fault_delayed` to train/eval with specific bugs.
 
+
+![alt text](https://imgur.com/a/hXYNzYM)
+
 ## Web Flow (Flask + Playwright)
 
 This repo also includes a simple two-step signup app plus DRL personas that interact with it through Playwright. You can train/eval the agents on a mock environment for speed, then run evaluations against the real Flask app with optional fault injection (delay, HTTP 500).
